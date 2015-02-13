@@ -1,17 +1,17 @@
 package gompost
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strconv"
-	"bytes"
 )
 
 // Function to make regular application/x-www-form-urlencoded POST requests
-func make_form_request(address string, request map[string]string) (map[string]interface{}, error) {
+func Make_form_request(address string, request map[string]string) (map[string]interface{}, error) {
 	rtn := make(map[string]interface{})
 	u, _ := url.ParseRequestURI(address)
 	client := &http.Client{}
@@ -35,7 +35,7 @@ func make_form_request(address string, request map[string]string) (map[string]in
 }
 
 // Function to make application/json requests
-func make_json_request(address string, request map[string]string) (map[string]interface{}, error) {
+func Make_json_request(address string, request map[string]string) (map[string]interface{}, error) {
 	rtn := make(map[string]interface{})
 	u, _ := url.ParseRequestURI(address)
 	client := &http.Client{}
@@ -55,4 +55,3 @@ func make_json_request(address string, request map[string]string) (map[string]in
 	err2 := json.Unmarshal([]byte(string(body)), &jsonPackage)
 	return jsonPackage, err2
 }
-
