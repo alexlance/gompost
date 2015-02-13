@@ -15,7 +15,6 @@ func Make_form_request(address string, request map[string]string) (map[string]in
 	rtn := make(map[string]interface{})
 	u, _ := url.ParseRequestURI(address)
 	client := &http.Client{}
-	input := ""
 	data := url.Values{}
 	for key, value := range request {
 		data.Add(key, value)
@@ -39,7 +38,6 @@ func Make_json_request(address string, request map[string]string) (map[string]in
 	rtn := make(map[string]interface{})
 	u, _ := url.ParseRequestURI(address)
 	client := &http.Client{}
-	input := ""
 	i, _ := json.Marshal(request)
 	input = string(i)
 	r, _ := http.NewRequest("POST", fmt.Sprintf("%v", u), bytes.NewBufferString(input))
