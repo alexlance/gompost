@@ -19,7 +19,7 @@ func Make_form_request(address string, request map[string]string) (map[string]in
 	for key, value := range request {
 		data.Add(key, value)
 	}
-	input = data.Encode()
+	input := data.Encode()
 	r, _ := http.NewRequest("POST", fmt.Sprintf("%v", u), bytes.NewBufferString(input))
 	r.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	r.Header.Add("Content-Length", strconv.Itoa(len(input)))
@@ -39,7 +39,7 @@ func Make_json_request(address string, request map[string]string) (map[string]in
 	u, _ := url.ParseRequestURI(address)
 	client := &http.Client{}
 	i, _ := json.Marshal(request)
-	input = string(i)
+	input := string(i)
 	r, _ := http.NewRequest("POST", fmt.Sprintf("%v", u), bytes.NewBufferString(input))
 	r.Header.Add("Content-Type", "application/json")
 	r.Header.Add("Content-Length", strconv.Itoa(len(input)))
